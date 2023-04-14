@@ -1,3 +1,4 @@
+--Function for easy mappings
 local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
@@ -10,7 +11,7 @@ map('n', 'Q', '<nop>')
 map('n', '<leader>gg', ':!google ')
 map('n', 'K', ':bnext<cr>')
 map('n', 'J', ':bprevious<cr>')
-map('n', ',gd', ':bdelete!<cr>')
+map('n', '<leader>bd', ':bdelete!<cr>')
 map('n', 'H', ':wincmd h<cr>')
 map('n', 'L', ':wincmd l<cr>')
 
@@ -36,21 +37,15 @@ map('n', '<leader>gh',
 )
 
 
---ChatGPT
-map('n', 'gpt', ':ChatGPT<cr>')
-map('v', 'gpt', '<esc>:ChatGPTEditWithInstructions<cr>')
-
-
---NvimTree
-map('n', '<leader>e', ':NvimTreeToggle<cr>')
-
-
---Neoformat
-map('n', '<f3>', ':Neoformat<cr>')
-
-
---Tagbar
-map('n', '<f8>', ':TagbarToggle<cr>')
+--MarkdownPrewiev
+vim.api.nvim_create_autocmd(
+    'FileType', {
+        pattern = 'markdown',
+        callback = function()
+            vim.api.nvim_buf_set_keymap(0, 'n', '<leader>md', ':MarkdownPreviewToggle<cr>', { silent = true })
+        end
+    }
+)
 
 
 --Command message hider
@@ -61,11 +56,30 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+
 --CelluarAutomation
 map('n', '<leader>mir', ':CellularAutomaton make_it_rain<cr>')
 map('n', '<leader>gol', ':CellularAutomaton game_of_life<cr>')
 
 
+--ChatGPT
+map('n', 'gpt', ':ChatGPT<cr>')
+map('v', 'gpt', '<esc>:ChatGPTEditWithInstructions<cr>')
+
+
+--Packer
+map('n', '<leader>ps', ':PackerSync<cr>')
+
+
+--NvimTree
+map('n', '<leader>e', ':NvimTreeToggle<cr>')
+
+
+--Tagbar
+map('n', '<f8>', ':TagbarToggle<cr>')
+
+
+--Function for easy compiler mappings
 local function map_compiler(ft, m, k, v)
     vim.api.nvim_create_autocmd(
         'FileType', {
@@ -78,6 +92,7 @@ local function map_compiler(ft, m, k, v)
 end
 
 
+--Compiler mappings
 map_compiler('python', 'n', '<f9>', ':w<cr>:term clear; py %<cr>:startinsert<cr>')
 map_compiler('python', 'n', '<f10>', ':w<cr>:term clear; /mnt/d/Apps/Python3.11/python.exe %<cr>:startinsert<cr>')
 map_compiler('cs', 'n', '<f9>', ':w<cr>:term clear; dotnet run --project %<cr>:startinsert<cr>')

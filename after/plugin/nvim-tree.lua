@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFindFileToggle<cr>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFindFileToggle<cr>", { silent = true, noremap = true })
 
 local function open_silent(node)
     local nt_api = require("nvim-tree.api")
@@ -11,7 +11,8 @@ require("nvim-tree").setup({
         enable = true,
     },
     filters = {
-        custom = { "^__pycache__$" }
+        custom = { "^__pycache__$" },
+        dotfiles = true
     },
     view = {
         mappings = {
@@ -31,13 +32,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
             -- Required to let the close event complete. An error is thrown without this.
             vim.defer_fn(function()
                 -- close nvim-tree: will go to the last hidden buffer used before closing
-                api.tree.toggle({find_file = true, focus = true})
+                api.tree.toggle({ find_file = true, focus = true })
                 -- re-open nivm-tree
-                api.tree.toggle({find_file = true, focus = true})
+                api.tree.toggle({ find_file = true, focus = true })
                 -- nvim-tree is still the active window. Go to the previous window.
                 vim.cmd("wincmd p")
             end, 0)
         end
     end
 })
-

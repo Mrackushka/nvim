@@ -30,14 +30,18 @@ opt.fillchars = {
 vim.cmd.colorscheme('darcula')
 vim.api.nvim_set_hl(0, 'Normal', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'StatusLine', { ctermbg=nil, bg=nil })
+vim.api.nvim_set_hl(0, 'StatusLineNc', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'LineNr', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg=nil, bg=nil })
 vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg=nil, bg=nil })
+vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg=nil, bg=nil })
+
 
 
 -- Better editing experience
+o.autochdir = true
 o.autoindent = true
 o.cindent = true
 o.encoding = 'utf-8'

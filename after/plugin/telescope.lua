@@ -12,7 +12,7 @@ local open_in_nvim_tree = function(prompt_bufnr)
     vim.cmd("NvimTreeClose")
     vim.cmd("NvimTreeOpen " .. entry_path)
 
-    file_name = nil
+    local file_name = nil
     for s in string.gmatch(entry, "[^/]+") do
         file_name = s
     end

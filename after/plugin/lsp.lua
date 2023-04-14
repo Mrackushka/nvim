@@ -14,6 +14,13 @@ lsp.configure('lua_ls', {
     }
 })
 
+lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({buffer = bufnr})
+    vim.keymap.set('n', '<leader>fb', function()
+        vim.lsp.buf.format({async = false, timeout_ms = 10000})
+    end)
+end)
+
 lsp.setup()
 
 
@@ -52,10 +59,3 @@ cmp.setup({
     },
 })
 
-
--- If you want insert `(` after select function or method item
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on(
-    'confirm_done',
-    cmp_autopairs.on_confirm_done()
-)
