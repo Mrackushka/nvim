@@ -108,6 +108,7 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'tpope/vim-fugitive' }
     use { 'jose-elias-alvarez/null-ls.nvim' }
+    use { 'rafamadriz/friendly-snippets' }
 
     --use { 'xiyaowong/transparent.nvim' }
     --use {

@@ -77,7 +77,7 @@ map('v', 'gpt', '<esc>:ChatGPTEditWithInstructions<cr>')
 
 
 --Packer
-map('n', '<leader>ps', ':PackerSync<cr>')
+map('n', '<leader>ps', ':so<cr>:PackerSync<cr>')
 
 
 --NvimTree

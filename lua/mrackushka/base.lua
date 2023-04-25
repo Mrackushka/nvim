@@ -20,7 +20,7 @@ vim.cmd [[set iskeyword+=-]]
 
 
 -- Better editor UI
---o.cursorline = true
+o.cursorline = true
 o.number = true
 o.numberwidth = 2
 o.relativenumber = true
@@ -41,20 +41,6 @@ opt.fillchars = {
     foldclose = "▸",
 }
 
-
---Colorscheme
---vim.cmd.colorscheme('darcula-solid-custom')
---vim.cmd.colorscheme('darcula-solid')
-vim.cmd.colorscheme('gruvbox-baby')
---vim.cmd.colorscheme('tokyonight-night')
---vim.cmd.colorscheme('gruvbox')
---require("catppuccin").setup({
-    --transparent_background = true,
---})
---vim.cmd.colorscheme('catppuccin')
---vim.cmd.colorscheme('kanagawa-dragon')
---vim.cmd.colorscheme('moonfly')
---vim.cmd.colorscheme('melange')
 
 --vim.cmd.colorscheme('darcula')
 --vim.api.nvim_set_hl(0, 'Normal', { ctermbg=nil, bg=nil })
