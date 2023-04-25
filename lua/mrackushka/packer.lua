@@ -1,3 +1,36 @@
+local fn = vim.fn
+
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system {
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    print "Installing packer... Close and reopen Neovim..."
+    vim.cmd [[packadd packer.nvim]]
+end
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+    return
+end
+
+-- Have packer use a popup window
+packer.init {
+    display = {
+        open_fn = function()
+            return require('packer.util').float { border = 'rounded' }
+        end,
+    },
+}
+
+-- Plugins
 return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim' }
 
@@ -54,7 +87,15 @@ return require('packer').startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     }
 
-    use { 'doums/darcula' }
+    --use { 'doums/darcula' }
+    use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
+    use { "ellisonleao/gruvbox.nvim" }
+    use { 'folke/tokyonight.nvim' }
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use { "rebelot/kanagawa.nvim" }
+    use { "bluz71/vim-moonfly-colors", as = "moonfly" }
+    use { "savq/melange-nvim" }
+    use { 'luisiacc/gruvbox-baby', branch = 'main' }
     use { 'https://github.com/ap/vim-css-color' }
     use { 'preservim/nerdcommenter' }
     use { 'mattn/emmet-vim' }
@@ -66,16 +107,22 @@ return require('packer').startup(function(use)
     use { 'eandrju/cellular-automaton.nvim' }
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'tpope/vim-fugitive' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
 
+    --use { 'xiyaowong/transparent.nvim' }
     --use {
-        --"folke/trouble.nvim",
-        --requires = "nvim-tree/nvim-web-devicons",
-        --config = function()
-            --require("trouble").setup {
-                ---- your configuration comes here
-                ---- or leave it empty to use the default settings
-                ---- refer to the configuration section below
-            --}
-        --end
+    --"folke/trouble.nvim",
+    --requires = "nvim-tree/nvim-web-devicons",
+    --config = function()
+    --require("trouble").setup {
+    ---- your configuration comes here
+    ---- or leave it empty to use the default settings
+    ---- refer to the configuration section below
     --}
+    --end
+    --}
+
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
 end)

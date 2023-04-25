@@ -3,8 +3,24 @@ local o = vim.o
 local opt = vim.opt
 
 
+--Test options
+--vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
+--vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+--vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
+--vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
+--vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
+--vim.opt.pumheight = 10                          -- pop up menu height
+--vim.opt.showtabline = 2                         -- always show tabs
+--vim.opt.smartindent = true                      -- make indenting smarter again
+--vim.opt.shortmess:append "c"
+--vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]]
+--vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+--o.path = o.path + '**' --???
+
+
 -- Better editor UI
-o.cursorline = true
+--o.cursorline = true
 o.number = true
 o.numberwidth = 2
 o.relativenumber = true
@@ -27,16 +43,29 @@ opt.fillchars = {
 
 
 --Colorscheme
-vim.cmd.colorscheme('darcula')
-vim.api.nvim_set_hl(0, 'Normal', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'StatusLine', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'StatusLineNc', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'LineNr', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg=nil, bg=nil })
-vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg=nil, bg=nil })
+--vim.cmd.colorscheme('darcula-solid-custom')
+--vim.cmd.colorscheme('darcula-solid')
+vim.cmd.colorscheme('gruvbox-baby')
+--vim.cmd.colorscheme('tokyonight-night')
+--vim.cmd.colorscheme('gruvbox')
+--require("catppuccin").setup({
+    --transparent_background = true,
+--})
+--vim.cmd.colorscheme('catppuccin')
+--vim.cmd.colorscheme('kanagawa-dragon')
+--vim.cmd.colorscheme('moonfly')
+--vim.cmd.colorscheme('melange')
+
+--vim.cmd.colorscheme('darcula')
+--vim.api.nvim_set_hl(0, 'Normal', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'StatusLine', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'StatusLineNc', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'LineNr', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'SignColumn', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'Pmenu', { ctermbg=nil, bg=nil })
+--vim.api.nvim_set_hl(0, 'VertSplit', { ctermbg=nil, bg=nil })
 
 
 
@@ -48,7 +77,8 @@ o.encoding = 'utf-8'
 o.expandtab = true
 o.list = true --???
 o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂" --???
-o.scrolloff = 7
+o.scrolloff = 8
+o.sidescrolloff = 8
 o.shellcmdflag = '-ic'
 o.shiftwidth = 4
 o.smarttab = true
@@ -62,8 +92,8 @@ o.wrap = false
 
 
 -- Decrease update time
---o.timeoutlen = 500
---o.updatetime = 200
+o.timeoutlen = 500
+o.updatetime = 300 --(400 default)
 
 
 --Makes neovim and host OS clipboard play nicely with each other
@@ -90,14 +120,11 @@ o.history = 50
 
 
 --Better buffer splitting
-o.splitright = true --???
-o.splitbelow = true --???
+o.splitright = true
+o.splitbelow = true
 
 
 --Map <leader> to coma
 g.mapleader = ','
 g.maplocalleader = ','
 
-
---o.completeopt = o.completeopt - 'preview' --???
---o.path = o.path + '**' --???

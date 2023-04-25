@@ -1,6 +1,7 @@
 local lsp = require('lsp-zero').preset({})
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
+    vim.keymap.set('n', '<c-k>', vim.lsp.buf.hover)
 end)
 
 -- Fix Undefined global 'vim'
@@ -13,13 +14,6 @@ lsp.configure('lua_ls', {
         }
     }
 })
-
-lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({buffer = bufnr})
-    vim.keymap.set('n', '<leader>fb', function()
-        vim.lsp.buf.format({async = false, timeout_ms = 10000})
-    end)
-end)
 
 lsp.setup()
 
@@ -58,4 +52,3 @@ cmp.setup({
         end, { "i", "s" }),
     },
 })
-

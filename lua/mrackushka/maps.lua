@@ -1,6 +1,6 @@
 --Function for easy mappings
 local function map(m, k, v)
-    vim.keymap.set(m, k, v, { silent = true })
+    vim.keymap.set(m, k, v, { noremap = true, silent = true })
 end
 
 
@@ -14,6 +14,15 @@ map('n', 'J', ':bprevious<cr>')
 map('n', '<leader>bd', ':bdelete!<cr>')
 map('n', 'H', ':wincmd h<cr>')
 map('n', 'L', ':wincmd l<cr>')
+map('n', '<C-Up>', ':resize +2<cr>')
+map('n', '<C-Down>', ':resize -2<cr>')
+map('n', '<C-Left>', ':vertical resize -2<cr>')
+map('n', '<C-Right>', ':vertical resize +2<cr>')
+map('n', '0', '0zz')
+map("i", "jk", "<esc>")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+map("v", "p", '"_dP')
 
 
 --Telescope
