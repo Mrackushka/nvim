@@ -1,5 +1,5 @@
-local status_ok, lsp = pcall(require, 'lsp-zero')
-if not status_ok then
+local lsp_status_ok, lsp = pcall(require, 'lsp-zero')
+if not lsp_status_ok then
     return
 end
 
@@ -22,16 +22,12 @@ lsp.configure('lua_ls', {
 })
 
 lsp.ensure_installed({
-    'pyright',
     'lua_ls',
-    'bashls',
-    'clangd',
-    'csharp_ls',
-    'jdtls',
+    'pyright',
 })
 
-local status_ok, mason_null_ls = pcall(require, 'mason-null-ls')
-if not status_ok then
+local mason_null_l_status_ok, mason_null_ls = pcall(require, 'mason-null-ls')
+if not mason_null_l_status_ok then
     return
 end
 
@@ -45,16 +41,16 @@ mason_null_ls.setup({
 lsp.setup()
 
 
-local status_ok, cmp = pcall(require, 'cmp')
-if not status_ok then
+local cmp_status_ok, cmp = pcall(require, 'cmp')
+if not cmp_status_ok then
     return
 end
 
 local cmp_action = lsp.cmp_action()
 
 
-local status_ok, vscode = pcall(require, 'luasnip.loaders.from_vscode')
-if not status_ok then
+local vscode_status_ok, vscode = pcall(require, 'luasnip.loaders.from_vscode')
+if not vscode_status_ok then
     return
 end
 vscode.lazy_load()

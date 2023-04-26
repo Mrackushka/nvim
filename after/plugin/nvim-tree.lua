@@ -3,14 +3,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         -- Only 1 window with nvim-tree left: we probably closed a file buffer
 
-        local status_ok, utils = pcall(require, 'nvim-tree.utils')
-        if not status_ok then
+        local util_status_ok, utils = pcall(require, 'nvim-tree.utils')
+        if not util_status_ok then
             return
         end
 
         if #vim.api.nvim_list_wins() == 1 and utils.is_nvim_tree_buf() then
-            local status_ok, api = pcall(require, 'nvim-tree.api')
-            if not status_ok then
+            local api_status_ok, api = pcall(require, 'nvim-tree.api')
+            if not api_status_ok then
                 return
             end
 
@@ -28,8 +28,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 local function on_attach(bufnr)
-    local status_ok, api = pcall(require, 'nvim-tree.api')
-    if not status_ok then
+    local api_status_ok, api = pcall(require, 'nvim-tree.api')
+    if not api_status_ok then
         return
     end
 
@@ -107,8 +107,8 @@ local function on_attach(bufnr)
 end
 
 
-local status_ok, nvimtree = pcall(require, 'nvim-tree')
-if not status_ok then
+local nvimtree_status_ok, nvimtree = pcall(require, 'nvim-tree')
+if not nvimtree_status_ok then
     return
 end
 

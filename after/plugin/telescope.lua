@@ -1,17 +1,17 @@
 local open_in_nvim_tree = function(prompt_bufnr)
 
-    local status_ok, action_state = pcall(require, 'telescope.actions.state')
-    if not status_ok then
+    local action_state_status_ok, action_state = pcall(require, 'telescope.actions.state')
+    if not action_state_status_ok then
         return
     end
 
-    local status_ok, Path = pcall(require, 'plenary.path')
-    if not status_ok then
+    local Path_status_ok, Path = pcall(require, 'plenary.path')
+    if not Path_status_ok then
         return
     end
 
-    local status_ok, actions = pcall(require, 'telescope.actions')
-    if not status_ok then
+    local actions_status_ok, actions = pcall(require, 'telescope.actions')
+    if not actions_status_ok then
         return
     end
 
@@ -33,8 +33,8 @@ local open_in_nvim_tree = function(prompt_bufnr)
 end
 
 
-local status_ok, telescope = pcall(require, 'telescope')
-if not status_ok then
+local telescope_status_ok, telescope = pcall(require, 'telescope')
+if not telescope_status_ok then
     return
 end
 telescope.setup {

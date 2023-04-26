@@ -1,11 +1,5 @@
-local status_ok, npairs = pcall(require, 'nvim-autopairs')
-if not status_ok then
-    return
-end
-
-
-local status_ok, Rule = pcall(require, 'nvim-autopairs.rule')
-if not status_ok then
+local npairs_status_ok, npairs = pcall(require, 'nvim-autopairs')
+if not npairs_status_ok then
     return
 end
 
@@ -21,16 +15,14 @@ npairs.setup({
 })
 
 
-local status_ok, ts_conds = pcall(require, 'nvim-autopairs.ts-conds')
-if not status_ok then
-    return
-end
+local Rule = require('nvim-autopairs.rule')
+local ts_conds = require('nvim-autopairs.ts-conds')
 
 
 -- press % => %% only while inside a comment or string
 npairs.add_rules({
-    Rule("%", "%", "lua")
+    Rule('%', '%', 'lua')
         :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
-    Rule("$", "$", "lua")
+    Rule('$', '$', 'lua')
         :with_pair(ts_conds.is_not_ts_node({ 'function' }))
 })

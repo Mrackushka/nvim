@@ -8,7 +8,7 @@ local colorscheme = 'gruvbox-baby'
 --local colorscheme = 'moonfly'
 --local colorscheme = 'melange'
 
-local status_ok, _ = pcall(vim.cmd.colorscheme, colorscheme)
-if not status_ok then
+local colorscheme_status_ok, _ = pcall(vim.cmd.colorscheme, colorscheme)
+if not colorscheme_status_ok then
     return
 end

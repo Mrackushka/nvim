@@ -1,5 +1,5 @@
-local status_ok, null_ls = pcall(require, 'null-ls')
-if not status_ok then
+local null_l_status_ok, null_ls = pcall(require, 'null-ls')
+if not null_l_status_ok then
     return
 end
 
