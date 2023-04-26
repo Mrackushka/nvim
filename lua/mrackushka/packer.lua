@@ -58,7 +58,9 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = function()
+            pcall(vim.cmd, 'TSUpdate')
+        end
     }
 
     use {
