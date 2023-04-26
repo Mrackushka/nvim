@@ -1,7 +1,19 @@
 local open_in_nvim_tree = function(prompt_bufnr)
-    local action_state = require "telescope.actions.state"
-    local Path = require "plenary.path"
-    local actions = require "telescope.actions"
+
+    local status_ok, action_state = pcall(require, 'telescope.actions.state')
+    if not status_ok then
+        return
+    end
+
+    local status_ok, Path = pcall(require, 'plenary.path')
+    if not status_ok then
+        return
+    end
+
+    local status_ok, actions = pcall(require, 'telescope.actions')
+    if not status_ok then
+        return
+    end
 
     local entry = action_state.get_selected_entry()[1]
     local entry_path = Path:new(entry):parent():absolute()
@@ -21,7 +33,11 @@ local open_in_nvim_tree = function(prompt_bufnr)
 end
 
 
-require("telescope").setup{
+local status_ok, telescope = pcall(require, 'telescope')
+if not status_ok then
+    return
+end
+telescope.setup {
     defaults = {
         mappings = {
             i = {

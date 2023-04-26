@@ -1,5 +1,14 @@
-local npairs = require("nvim-autopairs")
-local Rule = require('nvim-autopairs.rule')
+local status_ok, npairs = pcall(require, 'nvim-autopairs')
+if not status_ok then
+    return
+end
+
+
+local status_ok, Rule = pcall(require, 'nvim-autopairs.rule')
+if not status_ok then
+    return
+end
+
 
 npairs.setup({
     check_ts = true,
@@ -11,7 +20,11 @@ npairs.setup({
     enable_check_bracket_line = false
 })
 
-local ts_conds = require('nvim-autopairs.ts-conds')
+
+local status_ok, ts_conds = pcall(require, 'nvim-autopairs.ts-conds')
+if not status_ok then
+    return
+end
 
 
 -- press % => %% only while inside a comment or string

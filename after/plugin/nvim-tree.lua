@@ -1,11 +1,19 @@
-vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFindFileToggle<cr>", { silent = true, noremap = true })
-
 vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function()
         -- Only 1 window with nvim-tree left: we probably closed a file buffer
-        if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
-            local api = require('nvim-tree.api')
+
+        local status_ok, utils = pcall(require, 'nvim-tree.utils')
+        if not status_ok then
+            return
+        end
+
+        if #vim.api.nvim_list_wins() == 1 and utils.is_nvim_tree_buf() then
+            local status_ok, api = pcall(require, 'nvim-tree.api')
+            if not status_ok then
+                return
+            end
+
             -- Required to let the close event complete. An error is thrown without this.
             vim.defer_fn(function()
                 -- close nvim-tree: will go to the last hidden buffer used before closing
@@ -20,7 +28,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 local function on_attach(bufnr)
-    local api = require('nvim-tree.api')
+    local status_ok, api = pcall(require, 'nvim-tree.api')
+    if not status_ok then
+        return
+    end
 
     local function opts(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -90,13 +101,18 @@ local function on_attach(bufnr)
     -- You will need to insert "your code goes here" for any mappings with a custom action_cb
     vim.keymap.set('n', 'O', function()
         local node = api.tree.get_node_under_cursor()
-        local nt_api = require("nvim-tree.api")
-        nt_api.node.open.edit(node)
-        nt_api.tree.focus()
+        api.node.open.edit(node)
+        api.tree.focus()
     end, opts('open_silent'))
 end
 
-require("nvim-tree").setup({
+
+local status_ok, nvimtree = pcall(require, 'nvim-tree')
+if not status_ok then
+    return
+end
+
+nvimtree.setup({
     diagnostics = {
         enable = true,
     },

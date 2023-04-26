@@ -98,7 +98,6 @@ return require('packer').startup(function(use)
     use { 'luisiacc/gruvbox-baby', branch = 'main' }
     use { 'https://github.com/ap/vim-css-color' }
     use { 'preservim/nerdcommenter' }
-    use { 'mattn/emmet-vim' }
     use { 'https://github.com/preservim/tagbar' }
     use { 'https://github.com/Pocco81/auto-save.nvim.git' }
     use { 'mg979/vim-visual-multi', branch = 'master' }

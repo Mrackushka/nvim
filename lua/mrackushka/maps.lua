@@ -81,7 +81,7 @@ map('n', '<leader>ps', ':so<cr>:PackerSync<cr>')
 
 
 --NvimTree
-map('n', '<leader>e', ':NvimTreeToggle<cr>')
+map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
 
 
 --Tagbar

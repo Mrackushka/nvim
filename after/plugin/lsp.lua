@@ -1,4 +1,9 @@
-local lsp = require('lsp-zero').preset({})
+local status_ok, lsp = pcall(require, 'lsp-zero')
+if not status_ok then
+    return
+end
+
+lsp.preset({})
 lsp.on_attach(function(_, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
     vim.keymap.set('n', '<c-k>', vim.lsp.buf.hover)
@@ -19,14 +24,23 @@ lsp.configure('lua_ls', {
 lsp.setup()
 
 
-local cmp = require("cmp")
-local cmp_action = require('lsp-zero').cmp_action()
+local status_ok, cmp = pcall(require, 'cmp')
+if not status_ok then
+    return
+end
 
-require('luasnip.loaders.from_vscode').lazy_load()
+local cmp_action = lsp.cmp_action()
+
+
+local status_ok, vscode = pcall(require, 'luasnip.loaders.from_vscode')
+if not status_ok then
+    return
+end
+vscode.lazy_load()
 
 cmp.setup({
     --completion = {
-        --autocomplete = false
+    --autocomplete = false
     --},
     sources = {
         { name = 'path' },
