@@ -21,6 +21,27 @@ lsp.configure('lua_ls', {
     }
 })
 
+lsp.ensure_installed({
+    'pyright',
+    'lua_ls',
+    'bashls',
+    'clangd',
+    'csharp_ls',
+    'jdtls',
+})
+
+local status_ok, mason_null_ls = pcall(require, 'mason-null-ls')
+if not status_ok then
+    return
+end
+
+mason_null_ls.setup({
+    ensure_installed = {
+        'black',
+        'flake8',
+    }
+})
+
 lsp.setup()
 
 

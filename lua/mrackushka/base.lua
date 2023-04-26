@@ -78,8 +78,8 @@ o.wrap = false
 
 
 -- Decrease update time
-o.timeoutlen = 500
-o.updatetime = 300 --(400 default)
+--o.timeoutlen = 500
+--o.updatetime = 300 --(400 default)
 
 
 --Makes neovim and host OS clipboard play nicely with each other

@@ -3,6 +3,7 @@ local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
+    print "Installing Packer..."
     PACKER_BOOTSTRAP = fn.system {
         "git",
         "clone",
@@ -11,8 +12,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
         "https://github.com/wbthomason/packer.nvim",
         install_path,
     }
-    print "Installing packer... Close and reopen Neovim..."
     vim.cmd [[packadd packer.nvim]]
+    print "Done."
 end
 
 -- Use a protected call so we don't error out on first use
@@ -108,8 +109,9 @@ return require('packer').startup(function(use)
     use { 'eandrju/cellular-automaton.nvim' }
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'tpope/vim-fugitive' }
-    use { 'jose-elias-alvarez/null-ls.nvim' }
     use { 'rafamadriz/friendly-snippets' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
+    use { 'jay-babu/mason-null-ls.nvim' }
 
     --use { 'xiyaowong/transparent.nvim' }
     --use {
