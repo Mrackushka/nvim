@@ -5,7 +5,8 @@ end
 
 
 treesitter.setup({
-    ensure_installed = { 'lua', 'python', 'bash', 'javascript', 'typescript', 'c', 'rust' },
+    --ensure_installed = { 'lua', 'python', 'bash', 'javascript', 'typescript', 'c', 'rust' },
+    ensure_installed = 'all',
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,

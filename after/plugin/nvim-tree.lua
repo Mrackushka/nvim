@@ -1,19 +1,13 @@
+-- Go to last used hidden buffer when deleting a buffer
 vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function()
-        -- Only 1 window with nvim-tree left: we probably closed a file buffer
-
-        local util_status_ok, utils = pcall(require, 'nvim-tree.utils')
-        if not util_status_ok then
+        local api_status_ok, api = pcall(require, 'nvim-tree.api')
+        if not api_status_ok then
             return
         end
-
-        if #vim.api.nvim_list_wins() == 1 and utils.is_nvim_tree_buf() then
-            local api_status_ok, api = pcall(require, 'nvim-tree.api')
-            if not api_status_ok then
-                return
-            end
-
+        -- Only 1 window with nvim-tree left: we probably closed a file buffer
+        if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() and not "VimEnter" then
             -- Required to let the close event complete. An error is thrown without this.
             vim.defer_fn(function()
                 -- close nvim-tree: will go to the last hidden buffer used before closing
@@ -26,6 +20,30 @@ vim.api.nvim_create_autocmd("BufEnter", {
         end
     end
 })
+
+
+-- Change Root To Global Current Working Directory
+local function change_root_to_global_cwd()
+    local api_status_ok, api = pcall(require, 'nvim-tree.api')
+    if not api_status_ok then
+        return
+    end
+    local global_cwd = vim.fn.getcwd(-1, -1)
+    api.tree.change_root(global_cwd)
+end
+vim.keymap.set('n', '=', change_root_to_global_cwd)
+
+
+
+
+
+
+
+
+
+
+
+
 
 local function on_attach(bufnr)
     local api_status_ok, api = pcall(require, 'nvim-tree.api')
@@ -41,7 +59,7 @@ local function on_attach(bufnr)
     -- Default mappings. Feel free to modify or remove as you wish.
     --
     -- BEGIN_DEFAULT_ON_ATTACH
-    vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
+    vim.keymap.set('n', '+', api.tree.change_root_to_node, opts('CD'))
     vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place'))
     vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
     vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
@@ -111,6 +129,7 @@ local nvimtree_status_ok, nvimtree = pcall(require, 'nvim-tree')
 if not nvimtree_status_ok then
     return
 end
+
 
 nvimtree.setup({
     diagnostics = {

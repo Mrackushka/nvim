@@ -30,18 +30,18 @@ map('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 map('n', '<leader>fh', '<cmd>Telescope find_files hidden=true<cr>')
 map('n', '<leader>gh',
-    ":lua require'telescope.builtin'.live_grep{"..
-        "vimgrep_arguments = {"..
-            "'rg',"..
-            "'--color=never',"..
-            "'--no-heading',"..
-            "'--with-filename',"..
-            "'--line-number',"..
-            "'--column',"..
-            "'--smart-case',"..
-            "'-u',"..
-            "'--hidden'"..
-        "}"..
+    ":lua require'telescope.builtin'.live_grep{" ..
+    "vimgrep_arguments = {" ..
+    "'rg'," ..
+    "'--color=never'," ..
+    "'--no-heading'," ..
+    "'--with-filename'," ..
+    "'--line-number'," ..
+    "'--column'," ..
+    "'--smart-case'," ..
+    "'-u'," ..
+    "'--hidden'" ..
+    "}" ..
     "}<cr>"
 )
 
@@ -64,6 +64,18 @@ vim.api.nvim_create_autocmd(
         command = ':echo'
     }
 )
+
+
+-- BufferLine
+map('n', '<leader>bb', ':BufferLinePick<cr>')
+map('n', '<leader>bD', ':BufferLinePickClose<cr>')
+map('n', '<leader>bp', ':BufferLineTogglePin<cr>')
+
+
+-- LoggleTerm
+map('n', '<leader>lg', ':lua _LAZYGIT_TOGGLE()<cr>')
+map('n', '<leader>ht', ':lua _HTOP_TOGGLE()<cr>')
+map('n', '<leader>py', ':lua _PYTHON_TOGGLE()<cr>')
 
 
 --CelluarAutomation
@@ -107,4 +119,3 @@ map_compiler('python', 'n', '<f10>', ':w<cr>:term clear; /mnt/d/Apps/Python3.11/
 map_compiler('cs', 'n', '<f9>', ':w<cr>:term clear; dotnet run --project %<cr>:startinsert<cr>')
 map_compiler('html', 'n', '<f9>', ':w<cr>!explorer %<cr><cr>')
 map_compiler('sh', 'n', '<f9>', ':w<cr>:term clear; bash %<cr>:startinsert<cr>')
-

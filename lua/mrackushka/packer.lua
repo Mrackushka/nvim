@@ -90,7 +90,13 @@ return require('packer').startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     }
 
+    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+    end }
+
     --use { 'doums/darcula' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
+    use { 'jay-babu/mason-null-ls.nvim' }
     use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
     use { "ellisonleao/gruvbox.nvim" }
     use { 'folke/tokyonight.nvim' }
@@ -110,8 +116,6 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'tpope/vim-fugitive' }
     use { 'rafamadriz/friendly-snippets' }
-    use { 'jose-elias-alvarez/null-ls.nvim' }
-    use { 'jay-babu/mason-null-ls.nvim' }
 
     --use { 'xiyaowong/transparent.nvim' }
     --use {
