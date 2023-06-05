@@ -35,6 +35,12 @@ mason_null_ls.setup({
     ensure_installed = {
         'black',
         'flake8',
+        'beautysh',
+        'fixjson',
+        'html-lsp',
+        'jsonlint',
+        'shellcheck',
+        'sql-formatter',
     }
 })
 
