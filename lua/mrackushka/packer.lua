@@ -116,6 +116,8 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'tpope/vim-fugitive' }
     use { 'rafamadriz/friendly-snippets' }
+    use { "folke/zen-mode.nvim" }
+
 
     --use { 'xiyaowong/transparent.nvim' }
     --use {

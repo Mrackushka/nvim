@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
             return
         end
         -- Only 1 window with nvim-tree left: we probably closed a file buffer
-        if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() and not "VimEnter" then
+        if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
             -- Required to let the close event complete. An error is thrown without this.
             vim.defer_fn(function()
                 -- close nvim-tree: will go to the last hidden buffer used before closing

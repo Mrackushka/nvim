@@ -1,0 +1,8 @@
+{
+    "language": "mysql",
+    "tabWidth": 4,
+    "keywordCase": "lower",
+    "linesBetweenQueries": 2,
+    "newlineBeforeSemicolon": true,
+    "logicalOperatorNewline": "after"
+}

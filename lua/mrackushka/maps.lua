@@ -8,6 +8,9 @@ end
 map('n', '<leader><space>', ':nohlsearch<cr>')
 map('n', 'q:', '<nop>')
 map('n', 'Q', '<nop>')
+map({ 'n', 'i', 'v' }, '<f1>', '<nop>')
+map('v', '<s-j>', '<nop>')
+map('v', '<s-k>', '<nop>')
 map('n', '<leader>gg', ':!google ')
 map('n', 'K', ':bnext<cr>')
 map('n', 'J', ':bprevious<cr>')
@@ -98,6 +101,21 @@ map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
 
 --Tagbar
 map('n', '<f8>', ':TagbarToggle<cr>')
+
+
+-- Zen-mode
+map('n', '<f1>', ':ZenMode<cr>')
+
+
+-- Magma
+map('n', '<LocalLeader>r', ':MagmaEvaluateLine<cr>')
+map('v', '<LocalLeader>r', ':<esc>:MagmaEvaluateVisual<cr>')
+map('n', '<localleader>mi', ':MagmaInit python3<cr>')
+map('n', '<localleader>md', ':MagmaDelete<cr>')
+map('n', '<localleader>mr', ':MagmaRestart!<cr>')
+--map('n', '<LocalLeader>rc', ':MagmaReevaluateCell<cr>')
+--map('n', '<LocalLeader>rd', ':MagmaDelete<cr>')
+--map('n', '<LocalLeader>ro', ':MagmaShowOutput<cr>')
 
 
 --Function for easy compiler mappings

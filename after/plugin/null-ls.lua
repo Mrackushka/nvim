@@ -9,18 +9,35 @@ local diagnostics = null_ls.builtins.diagnostics
 
 
 null_ls.setup({
+    debug=true,
     sources = {
         --formatting.yapf,
-        formatting.black,
-        --formatting.black.with {
+        formatting.black.with {
             --extra_args = {
-                --"--skip-string-normalization"
+                ----"--skip-string-normalization",
+                --"--line-length=79"
             --}
-        --},
+        },
         diagnostics.flake8.with({
             extra_args = {
-                "--extend-ignore=F401"
+                "--extend-ignore=F401,F841",
+                "--max-line-length=88"
             }
         }),
+
+        formatting.beautysh,
+        diagnostics.shellcheck,
+        formatting.sql_formatter.with {
+            extra_args = {
+                "--config=/home/mrackushka/.config/nvim/after/plugin/sql_formatter.json"
+            }
+        },
+
+        diagnostics.jsonlint,
+        formatting.fixjson.with {
+            extra_args = {
+                "--indent=4"
+            }
+        },
     },
 })

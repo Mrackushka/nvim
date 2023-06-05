@@ -6,7 +6,7 @@ end
 
 toggleterm.setup {
     open_mapping = [[<leader>t]],
-    autochdir = true,
+    autochdir = false,
     direction = 'float',
     float_opts = {
         border = 'curved',
