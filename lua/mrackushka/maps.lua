@@ -107,17 +107,6 @@ map('n', '<f8>', ':TagbarToggle<cr>')
 map('n', '<f1>', ':ZenMode<cr>')
 
 
--- Magma
-map('n', '<LocalLeader>r', ':MagmaEvaluateLine<cr>')
-map('v', '<LocalLeader>r', ':<esc>:MagmaEvaluateVisual<cr>')
-map('n', '<localleader>mi', ':MagmaInit python3<cr>')
-map('n', '<localleader>md', ':MagmaDelete<cr>')
-map('n', '<localleader>mr', ':MagmaRestart!<cr>')
---map('n', '<LocalLeader>rc', ':MagmaReevaluateCell<cr>')
---map('n', '<LocalLeader>rd', ':MagmaDelete<cr>')
---map('n', '<LocalLeader>ro', ':MagmaShowOutput<cr>')
-
-
 --Function for easy compiler mappings
 local function map_compiler(ft, m, k, v)
     vim.api.nvim_create_autocmd(
@@ -135,5 +124,5 @@ end
 map_compiler('python', 'n', '<f9>', ':w<cr>:term clear; py %<cr>:startinsert<cr>')
 map_compiler('python', 'n', '<f10>', ':w<cr>:term clear; /mnt/d/Apps/Python3.11/python.exe %<cr>:startinsert<cr>')
 map_compiler('cs', 'n', '<f9>', ':w<cr>:term clear; dotnet run --project %<cr>:startinsert<cr>')
-map_compiler('html', 'n', '<f9>', ':w<cr>!explorer %<cr><cr>')
+map_compiler('html', 'n', '<f9>', ':w<cr>:!explorer $(wslpath -w %)<cr><cr>')
 map_compiler('sh', 'n', '<f9>', ':w<cr>:term clear; bash %<cr>:startinsert<cr>')

@@ -41,6 +41,7 @@ mason_null_ls.setup({
         'jsonlint',
         'shellcheck',
         'sql-formatter',
+        'css-lsp',
     }
 })
 

@@ -9,13 +9,13 @@ local diagnostics = null_ls.builtins.diagnostics
 
 
 null_ls.setup({
-    debug=true,
+    debug = true,
     sources = {
         --formatting.yapf,
         formatting.black.with {
             --extra_args = {
-                ----"--skip-string-normalization",
-                --"--line-length=79"
+            ----"--skip-string-normalization",
+            --"--line-length=79"
             --}
         },
         diagnostics.flake8.with({
@@ -39,5 +39,6 @@ null_ls.setup({
                 "--indent=4"
             }
         },
+        --formatting.prettier,
     },
 })
